@@ -1,0 +1,14 @@
+D:\scripts\csharp\dump\sum\bin\Debug\net9.0\sum.exe
+D:\scripts\csharp\dump\sum\bin\Debug\net9.0\sum.deps.json
+D:\scripts\csharp\dump\sum\bin\Debug\net9.0\sum.runtimeconfig.json
+D:\scripts\csharp\dump\sum\bin\Debug\net9.0\sum.dll
+D:\scripts\csharp\dump\sum\bin\Debug\net9.0\sum.pdb
+D:\scripts\csharp\dump\sum\obj\Debug\net9.0\sum.GeneratedMSBuildEditorConfig.editorconfig
+D:\scripts\csharp\dump\sum\obj\Debug\net9.0\sum.AssemblyInfoInputs.cache
+D:\scripts\csharp\dump\sum\obj\Debug\net9.0\sum.AssemblyInfo.cs
+D:\scripts\csharp\dump\sum\obj\Debug\net9.0\sum.csproj.CoreCompileInputs.cache
+D:\scripts\csharp\dump\sum\obj\Debug\net9.0\sum.dll
+D:\scripts\csharp\dump\sum\obj\Debug\net9.0\refint\sum.dll
+D:\scripts\csharp\dump\sum\obj\Debug\net9.0\sum.pdb
+D:\scripts\csharp\dump\sum\obj\Debug\net9.0\sum.genruntimeconfig.cache
+D:\scripts\csharp\dump\sum\obj\Debug\net9.0\ref\sum.dll
