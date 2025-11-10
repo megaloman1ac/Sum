@@ -1,17 +1,47 @@
 ﻿using System;
-class Sum
+using System.Linq.Expressions;
+using SumHash;
+
+namespace SumHash
 {
-
-    public static void GetArgs(string[] args)
+    class Sum
     {
-        for (int i = 0; i < args.Length; i++)
+        public static Hash hash = new Hash();
+        public static Messages mess = new Messages();
+
+        public static void GetArgs(string[] args)
         {
-            Console.WriteLine(args[i]);
-        }
-    }
+            for (int i = 0; i < args.Length; i++)
+            {
+                switch (args[i])
+                {
+                    case "-f":
+                        try
+                        {
+                            if (args[i + 1][0] == '-')
+                            {
+                                mess.printMessage("Error", "No file was found or written");
+                            }
+                            else
+                            {
+                                hash.fileToGetHash = args[i + 1];
 
-    public static void Main(string[] args)
-    {
-        GetArgs(args);
+                                mess.printMessage("File", $"Input file added [ {hash.fileToGetHash} ]");
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            mess.printMessage("Error", "No file was found or written");
+                        }
+                        
+                        break;
+                }
+            }
+        }
+
+        public static void Main(string[] args)
+        {
+            GetArgs(args);
+        }
     }
 }
