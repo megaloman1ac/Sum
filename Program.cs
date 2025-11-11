@@ -1,7 +1,13 @@
-﻿using System;
+﻿// ** libraries ** //
+
+using System;
 using System.Diagnostics;
 using System.Linq.Expressions;
+using System.IO;
+
+// ** namespaces ** //
 using SumHash;
+using System.Threading.Tasks;
 
 namespace SumHash
 {
@@ -9,8 +15,8 @@ namespace SumHash
     {
         public static Hash hash = new Hash();
         public static Messages mess = new Messages();
-
         public static byte err = 0;
+        public static string outputFile = string.Empty;
 
         public static void GetArgs(string[] args)
         {
@@ -54,17 +60,17 @@ namespace SumHash
             }
         }
 
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             GetArgs(args);
 
-            if(err == 1)
+            if (err == 1)
             {
                 mess.printMessage("End", $"Shutting down");
                 Environment.Exit(0);
             }
 
-            if(hash.typeOfHash == string.Empty)
+            if (hash.typeOfHash == string.Empty)
             {
                 hash.typeOfHash = "sha256";
                 mess.printMessage("Algo", $"default algorithm [ {hash.typeOfHash} ]");
@@ -92,7 +98,37 @@ namespace SumHash
 
             hash.hashOfFile = line[1];
 
+            line = null;
+            err = 0;
+
+            GC.Collect();
+            GC.WaitForFullGCComplete();
+            GC.WaitForPendingFinalizers();
+
             mess.printMessage("Hash", $"hash of file [ {hash.hashOfFile} ]");
+
+            //mess.printMessage("debug", $"file [ {(hash.fileToGetHash).Substring(0, (hash.fileToGetHash).LastIndexOf("\\") + 1)} ]");
+            //mess.printMessage("debug", $"file [ {(hash.fileToGetHash).Substring((hash.fileToGetHash).LastIndexOf("\\") + 1)}.{hash.typeOfHash} ]");
+
+            outputFile = $"{hash.fileToGetHash}.{hash.typeOfHash}";
+
+            try
+            {
+                if (!File.Exists(outputFile))
+                {
+                    //FileStream fs = File.Create(outputFile, FileMode.Create);
+                    //fs.Close();
+
+                    mess.printMessage("OutFile", $"Working on [ {outputFile} ]");
+                    //await fs.Write($"{hash.hashOfFile} {(hash.fileToGetHash).Substing((hash.fileToGetHash).LastIndexOf("\\") + 1)}", 0);
+                    File.WriteAllText(outputFile, $"{hash.hashOfFile}  {(hash.fileToGetHash).Substring((hash.fileToGetHash).LastIndexOf("\\") + 1)}");
+                    mess.printMessage("OutFile", $"File has been written [ {outputFile} ]");
+                }
+            }
+            catch(Exception ex)
+            {
+                mess.printMessage("Error", $"{ex.Message}");
+            }
         }
     }
 }
