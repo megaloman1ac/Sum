@@ -106,21 +106,13 @@ namespace SumHash
             GC.WaitForPendingFinalizers();
 
             mess.printMessage("Hash", $"hash of file [ {hash.hashOfFile} ]");
-
-            //mess.printMessage("debug", $"file [ {(hash.fileToGetHash).Substring(0, (hash.fileToGetHash).LastIndexOf("\\") + 1)} ]");
-            //mess.printMessage("debug", $"file [ {(hash.fileToGetHash).Substring((hash.fileToGetHash).LastIndexOf("\\") + 1)}.{hash.typeOfHash} ]");
-
             outputFile = $"{hash.fileToGetHash}.{hash.typeOfHash}";
 
             try
             {
                 if (!File.Exists(outputFile))
                 {
-                    //FileStream fs = File.Create(outputFile, FileMode.Create);
-                    //fs.Close();
-
                     mess.printMessage("OutFile", $"Working on [ {outputFile} ]");
-                    //await fs.Write($"{hash.hashOfFile} {(hash.fileToGetHash).Substing((hash.fileToGetHash).LastIndexOf("\\") + 1)}", 0);
                     File.WriteAllText(outputFile, $"{hash.hashOfFile}  {(hash.fileToGetHash).Substring((hash.fileToGetHash).LastIndexOf("\\") + 1)}");
                     mess.printMessage("OutFile", $"File has been written [ {outputFile} ]");
                 }
